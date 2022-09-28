@@ -2,6 +2,7 @@
 #define FREQUENCY_DICTIONARY_H
 
 #include "Unordered_map.h"
+#include "String.h"
 
 class frequency_dictionary {
 private:

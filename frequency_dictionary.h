@@ -23,7 +23,6 @@ public:
 
     void print_three_most_popular_words();
     void print_number_word_copies();
-    void print_reverse_number_word_copies();
 };
 
 bool frequency_dictionary::parse_word(std::string str, std::string& parsed_word) {
@@ -64,9 +63,9 @@ int frequency_dictionary::search(const std::string& word) {
     return _string_to_number[parsed_word];
 }
 
-//void frequency_dictionary::erase(const std::string& word) {
-//    _string_to_number.erase(word);
-//}
+void frequency_dictionary::erase(const std::string& word) {
+    _string_to_number.erase(word);
+}
 
 void frequency_dictionary::fill() {
 
@@ -110,18 +109,21 @@ void frequency_dictionary::fill() {
 }
 
 void frequency_dictionary::print_three_most_popular_words() {
+    if (!_number_to_string.size())
+        fill();
     std::cout << "print three most popular words:" << std::endl;
-    fill();
     for (int i = 0; i < 3; ++i) {
-        if (_free_most_popular_words[i].empty())
+        if (_free_most_popular_words[i].empty()) {
+            std::cout << '\n';
             return;
+        }
         std::cout << _free_most_popular_words[i] << ' ';
     }
     std::cout << '\n';
 }
 
 void frequency_dictionary::print_number_word_copies() {
-    fill();
+    std::cout << "print number word copies:" << std::endl;
     for (const auto& l : _string_to_number.get_table_data()) {
         for (const auto& p : l) {
             std::cout << '{' << p.first << ' ' << p.second << '}' << ",\n";
@@ -129,14 +131,5 @@ void frequency_dictionary::print_number_word_copies() {
     }
 }
 
-//void frequency_dictionary::print_reverse_number_word_copies() {
-//    fill();
-//    for (const auto& l : _number_to_string.get_table_data()) {
-//        std::cout << '{' << p.first() << " [";
-//            for (const auto& l : p.second())
-//                std::cout << l << ' ';
-//        std::cout  << "]"  << "}\n";
-//    }
-//}
 
 #endif //  FREQUENCY_DICTIONARY_H

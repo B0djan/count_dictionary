@@ -18,6 +18,7 @@ namespace my {
         Value& operator[] (const Key& key);
         void erase(const Key& key);
         void print();
+        int size() const;
 
         my::vector<my::list<my::pair<Key, Value>>>& get_table_data();
 
@@ -34,6 +35,11 @@ namespace my {
         size_t map_hash (int key) const;
         size_t get_basket_number(int hash) const;
     };
+
+    template <class Key, class Value>
+    int unordered_map<Key, Value>::size() const {
+        return map_size;
+    }
 
     template <class Key, class Value>
     unordered_map<Key, Value>::unordered_map() : map_size(0) {
@@ -78,10 +84,10 @@ namespace my {
     void unordered_map<Key, Value>::erase (const Key& key) {
         int basket_number = get_basket_number(map_hash(key));
         auto& list = table[basket_number];
-        for (auto& e : list) {
-            if (e.fist == key) {
+        for (auto it = list.begin(); it != list.end(); ++it) {
+            if (it->first == key) {
                 map_size -= 1;
-                list.erase(e);
+                list.erase(it);
             }
         }
     }

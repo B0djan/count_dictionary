@@ -1,0 +1,3 @@
+/home/bodja_n/dev/dictionary/cmake-build-debug/CMakeFiles/a.out.dir
+/home/bodja_n/dev/dictionary/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/bodja_n/dev/dictionary/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,9 @@
+# ninja log v5
+0	20	1664309355100332093	CMakeFiles/dictionary.dir/Node.cpp.o	d6fb47099fe6dec0
+0	19	1664309355100332093	CMakeFiles/dictionary.dir/MyListIterator.cpp.o	23637c472f85e480
+255	324	1664313736002628571	dictionary	e6bc18bc55272ea9
+0	20	1664309355100332093	CMakeFiles/dictionary.dir/MyList.cpp.o	cdffa009ee1ae51f
+1	255	1664313735934628180	CMakeFiles/dictionary.dir/main.cpp.o	cf2cf3ec72c641de
+0	479	1664309438903995533	CMakeFiles/dictionary.dir/Main.cpp.o	72165f4edcefc868
+0	434	1664396809520364710	CMakeFiles/a.out.dir/main.cpp.o	31af97e13239aef6
+434	509	1664396809596366963	a.out	1d8364a9b323ccfc

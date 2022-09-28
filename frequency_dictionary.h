@@ -6,27 +6,27 @@
 
 class frequency_dictionary {
 private:
-    my::unordered_map<std::string, int> _string_to_number;
-    my::unordered_map<int, my::list<std::string>> _number_to_string;
-    std::string* _free_most_popular_words;
+    my::unordered_map<my::string, int> _string_to_number;
+    my::unordered_map<int, my::list<my::string>> _number_to_string;
+    my::string* _free_most_popular_words;
     const char* punctuation_marks = ".,!?:";
 
-    bool parse_word(std::string str, std::string& parsed_word);
+    bool parse_word(my::string str, my::string& parsed_word);
 public:
-    explicit frequency_dictionary() { _free_most_popular_words = new std::string[3]; }
+    explicit frequency_dictionary() { _free_most_popular_words = new my::string[3]; }
     ~frequency_dictionary() { delete[] _free_most_popular_words; }
     void fill();
 
-    void insert(const std::string& word);
-    void insert(const std::string& word, int value);
-    int  search(const std::string& word);
-    void erase (const std::string& word);
+    void insert(const my::string& word);
+    void insert(const my::string& word, int value);
+    int  search(const my::string& word);
+    void erase (const my::string& word);
 
     void print_three_most_popular_words();
     void print_number_word_copies();
 };
 
-bool frequency_dictionary::parse_word(std::string str, std::string& parsed_word) {
+bool frequency_dictionary::parse_word(my::string str, my::string& parsed_word) {
     if (str.empty())
         return false;
     int end_offset = 0;
@@ -41,30 +41,30 @@ bool frequency_dictionary::parse_word(std::string str, std::string& parsed_word)
         if (!(str[i] >= 'a' && str[i] <= 'z'))
             return false;
     }
-    parsed_word = std::string(str.begin(), str.end()-end_offset + 1);
+    parsed_word = my::string(str.begin(), str.end()-end_offset + 1);
     return true;
 }
 
-void frequency_dictionary::insert(const std::string& word) {
-    std::string parsed_word;
+void frequency_dictionary::insert(const my::string& word) {
+    my::string parsed_word;
     if (parse_word(word, parsed_word))
         _string_to_number[parsed_word] += 1;
 }
 
-void frequency_dictionary::insert(const std::string& word, int value) {
-    std::string parsed_word;
+void frequency_dictionary::insert(const my::string& word, int value) {
+    my::string parsed_word;
     if (parse_word(word, parsed_word))
         _string_to_number[parsed_word] += value;
 }
 
-int frequency_dictionary::search(const std::string& word) {
+int frequency_dictionary::search(const my::string& word) {
     std::string parsed_word;
     if (!parse_word(word, parsed_word))
         return -1;
     return _string_to_number[parsed_word];
 }
 
-void frequency_dictionary::erase(const std::string& word) {
+void frequency_dictionary::erase(const my::string& word) {
     _string_to_number.erase(word);
 }
 

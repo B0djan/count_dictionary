@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     if (!file.is_open()) {
         return -1;
     }
-    std::string new_word;
+    my::string new_word;
     frequency_dictionary dictionary;
     while (file >> new_word) {
         dictionary.insert(new_word);

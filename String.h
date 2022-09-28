@@ -12,6 +12,9 @@ namespace my {
             using pointer = const char*;
             using reference = const char&;
 
+            friend  std::istream& operator>>(std::istream &in, my::string& str);
+            friend  std::ostream& operator<<(std::ostream &in, const my::string& str);
+
             // iterator();
             explicit iterator(const char* ptr = nullptr);
             iterator(const iterator&);
@@ -29,7 +32,7 @@ namespace my {
     public:
 
         string();
-        explicit string(const char* s);
+        explicit string(char* s);
         string(const my::string::iterator& it_begin, const my::string::iterator& it_end);
         string (const string& other);
         ~string();
@@ -37,12 +40,14 @@ namespace my {
         const char& at(int i);
         int size() const;
         bool empty() const;
+        char& operator[] (int i);
 
         iterator begin() const;
         iterator end() const;
     private:
         int _size{};
-        const char* _data{};
+        int capaity{};
+        char* _data{};
     };
 
     string::iterator::iterator(const char *ptr) : cur(ptr) {}
@@ -99,7 +104,7 @@ namespace my {
         }
         _data = tmp;
     }
-    string::string(const char* s) : _size(s ? int(strlen(s)) : 0), _data(s) {};
+    string::string(char* s) : _size(s ? int(strlen(s)) : 0), _data(s) {};
     string::string(const string& other) : _size(other._size) {
         char *tmp = new char[other._size + 1];
         for (int i = 0; i <= _size; ++i) {
@@ -125,6 +130,43 @@ namespace my {
     bool string::empty() const {
         return _size == 0;
     }
+
+    char &string::operator[](int i) {
+        return _data[i];
+    }
+}
+
+std::ostream& operator << (std::ostream &os, const my::string& str)
+{
+    for (const auto c : str) {
+        os << c;
+    }
+    return os;
+}
+
+std::istream& operator>>(std::istream &in, my::string& str)
+{
+    str._capacity = 10;
+    str._data = new char[str._capacity];
+    str._size = 0;
+    int i = 0;
+    char c = 0;
+    while (c != ' ') {
+        if (str._size == str._capacity) {
+            str._capacity += 2;
+            char* tmp = new char[str._capacity];
+            for (int i = 0 ; i <= str.size(); ++i) {
+                tmp[i] = str._data[i];
+                delete str._data;
+                str.data = tmp;
+            }
+        }
+        in.get(c);
+        str._data[i] = c;
+        i++;
+        str._size++;
+    }
+    return in;
 }
 
 #endif

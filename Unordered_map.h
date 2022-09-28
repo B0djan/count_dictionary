@@ -4,9 +4,9 @@
 #include "List.h"
 #include "Pair.h"
 #include "Vector.h"
+#include "String.h"
 
 #include <iostream>
-#include <string>
 
 namespace my {
     template <class Key, class Value>
@@ -31,7 +31,7 @@ namespace my {
         static int const _hash_cfA   = 930310127;
         static int const _hash_cfB   = 935489;
 
-        size_t map_hash (const std::string& str) const;
+        size_t map_hash (const my::string& str) const;
         size_t map_hash (int key) const;
         size_t get_basket_number(int hash) const;
     };
@@ -50,7 +50,7 @@ namespace my {
     unordered_map<Key, Value>::~unordered_map() = default;
 
     template< typename Key, typename Value >
-    size_t unordered_map<Key, Value>::map_hash(const std::string& str) const {
+    size_t unordered_map<Key, Value>::map_hash(const my::string& str) const {
         size_t hash = 0;
         for (auto ch : str)
             hash = (hash * _base + static_cast<size_t>(ch) );

@@ -1,4 +1,5 @@
 mother.. mother!, father?!, father, brother, parents
+mother
 
 
 "hello" - this is word
